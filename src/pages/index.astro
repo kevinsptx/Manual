@@ -1,17 +1,19 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro"
+const allPost = Object.values(import.meta.glob('./posts/*.md', { eager: true }))
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<div class="flex justify-center">
+		<p class="bg-[#687e52] rounded-3xl sombra-blanca p-4 w-full max-w-xl mx-4 mb-4 text-center">
+			Bienvenido a este pequeño manual de Astro y Tailwind CSS. Aquí encontrarás algunas notas, ejemplos y pasos que me ayudaron a entender mejor estas herramientas. La idea no es complicarse mucho, sino aprender mientras se construye algo funcional y chevere.
+		</p>
+	</div>
+
+  	{allPost.map((post: any) => (
+    <a href={post.url} class="block m-4 bg-[#ba963c] p-4 rounded-tl-3xl rounded-br-3xl border-8 border-dotted border-[#3d2200] hover:opacity-80">
+      	<h2 class="text-2xl font-bold">{post.frontmatter.title}</h2>
+      	<p>{post.frontmatter.description}</p>
+    </a>
+  	))}
+</BaseLayout>

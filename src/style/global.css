@@ -1,0 +1,7 @@
+@import "tailwindcss";
+body{
+    font-family: "Special Elite", cursive;
+}
+.sombra-blanca {
+    text-shadow: 0 0 22px rgb(159, 240, 173);
+}
